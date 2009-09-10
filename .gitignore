@@ -1,0 +1,6 @@
+nbproject
+log/**
+tmp/**
+config/database.yml
+config/git.yml
+
