@@ -1,0 +1,25 @@
+#!/usr/bin/env ruby
+
+
+
+def scan_steps(&block)
+  dir = File.expand_path(File.dirname(__FILE__) + '/../../step_definitions')
+  Dir.foreach(dir) do |p|
+    if p =~ /\.rb$/
+      yield File.join(dir, p)
+    end
+  end
+end
+
+match_verb = '(?:Given|When|Then)'
+match_open = '[( ]?'
+scan_steps do |f|
+  File.foreach(f) do |line|
+    if line =~ /^#{match_verb}#{match_open}(\/.*\/)/
+      #puts line
+      puts $1
+    end
+  end
+end
+
+
